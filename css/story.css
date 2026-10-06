@@ -1,0 +1,221 @@
+/* The story: lines appear one after another, blur into focus, and leave the same way. */
+
+.fragment {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 58%;
+  bottom: calc(var(--safe-bottom) + 7%);
+  z-index: 5;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 20px;
+  padding: 0 max(var(--gutter), var(--safe-left)) 0 max(var(--gutter), var(--safe-right));
+  text-align: center;
+  pointer-events: none;
+}
+
+.fragment__text {
+  margin: 0;
+  max-width: 19em;
+  font-size: var(--text-size);
+  line-height: 1.17;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+  text-shadow: var(--shadow-text);
+}
+
+.fragment[data-size='long'] .fragment__text {
+  font-size: calc(var(--text-size) * 0.86);
+  line-height: 1.2;
+}
+
+.line {
+  display: block;
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(10px);
+  transition:
+    opacity 1.7s var(--ease-out),
+    filter 1.7s var(--ease-out),
+    transform 1.7s var(--ease-out);
+}
+
+.line + .line {
+  margin-top: 0.42em;
+}
+
+.line.is-in {
+  opacity: 1;
+  filter: blur(0);
+  transform: none;
+}
+
+.line.is-out {
+  opacity: 0;
+  filter: blur(6px);
+  transform: translateY(-4px);
+  transition-duration: 0.95s;
+}
+
+/* A quiet dot says "when you're ready" — no words needed. */
+.fragment__next {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ink);
+  opacity: 0;
+  transition: opacity 1.2s var(--ease-out);
+}
+
+.fragment__next.is-ready {
+  opacity: 0.6;
+  animation: breathe 3.2s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.25;
+  }
+  50% {
+    transform: scale(1.7);
+    opacity: 0.75;
+  }
+}
+
+/* Small instruction line: mono, low contrast, never in the way. */
+.hint {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--safe-bottom) + 30px);
+  margin: 0;
+  padding: 0 var(--gutter);
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+  text-shadow: var(--shadow-text);
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 1.2s var(--ease-out),
+    transform 1.2s var(--ease-out);
+  z-index: 6;
+}
+
+.hint.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.hint.is-strong {
+  color: var(--ink);
+  font-size: 0.8125rem;
+}
+
+/* Breathing */
+
+.breath {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--safe-bottom) + 84px);
+  transform: translateX(-50%);
+  z-index: 6;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  opacity: 0;
+  transition: opacity 1.2s var(--ease-out);
+  pointer-events: none;
+}
+
+.breath.is-visible {
+  opacity: 1;
+}
+
+.breath__svg {
+  overflow: visible;
+}
+
+.breath__track,
+.breath__fill {
+  fill: none;
+  stroke-width: 1.2;
+}
+
+.breath__track {
+  stroke: var(--ink-3);
+  opacity: 0.5;
+}
+
+.breath__fill {
+  stroke: var(--amber-soft);
+  stroke-linecap: round;
+}
+
+.breath__dots {
+  display: flex;
+  gap: 10px;
+}
+
+.breath__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: 1px solid var(--ink-3);
+  transition:
+    background 1s var(--ease-out),
+    border-color 1s var(--ease-out);
+}
+
+.breath__dot.is-done {
+  background: var(--amber-soft);
+  border-color: var(--amber-soft);
+}
+
+.skip {
+  position: fixed;
+  top: calc(var(--safe-top) + 12px);
+  left: max(14px, var(--safe-left));
+  z-index: 8;
+  min-height: 44px;
+  padding: 0 10px;
+  font-size: 0.6875rem;
+  color: var(--ink-3);
+  opacity: 0;
+  transition: opacity 1.4s var(--ease-out);
+}
+
+.skip.is-visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line,
+  .line.is-in,
+  .line.is-out {
+    filter: none;
+    transform: none;
+    transition-duration: 0.6s;
+  }
+
+  .fragment__next.is-ready {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+/* Phones held sideways: the sun is on the left, the words go on the right. */
+.is-landscape .fragment {
+  left: 46%;
+  top: 0;
+  bottom: 0;
+}
+
+.is-landscape .scrim {
+  display: none;
+}
