@@ -3,46 +3,37 @@
  * the lines of one fragment appear one after another and the next fragment waits for a tap.
  */
 
-const MONTHS = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+import { sixesSince, todayLabel } from './util/dates.js';
+
+const now = new Date();
+const isSix = now.getDate() === 6;
+const sixes = sixesSince(now);
 
 export const CONTENT = {
   gate: {
-    kicker: () => {
-      const now = new Date();
-      return `para camila · ${now.getDate()} de ${MONTHS[now.getMonth()]}`;
-    },
-    title: 'No vengo a pedirte nada.',
-    sub: 'Solo a explicarte, a mi manera, lo que pasó.',
+    kicker: todayLabel(now),
+    title: isSix ? 'Hoy es 6.' : 'Hay un 6 que no se me pasa.',
+    sub: 'Hay fechas que no dejo pasar.',
     enter: 'entrar',
     soundOn: 'con sonido',
     soundOff: 'en silencio',
     note: 'puedes salir cuando quieras',
   },
 
-  /** What happened, said plainly. */
-  ayer: [
-    ['Ayer te pedí que te alejaras.'],
-    ['Lo dije en medio de un ataque de pánico.', 'Cuando eso me pasa, el miedo habla más fuerte que yo.'],
-    ['Mi cabeza me llevó a un lugar viejo', 'y respondí desde ahí.', 'No desde lo que tú eres hoy.'],
-    ['No lo cuento para justificarme.', 'Lo que dije estuvo mal, y la forma en que lo dije, peor.'],
-    ['Lo siento, Camila.', 'De verdad. Sin peros.'],
-    ['Un eclipse no apaga el sol.', 'Solo se pone algo en medio, y por unos minutos no se ve.'],
-    ['Ayer ese algo fue mi miedo.', 'No fuiste tú.'],
-  ],
-
-  breath: {
-    intro: [['Así se siente desde adentro.', 'Si quieres, respira conmigo.']],
-    hintIdle: 'mantén presionado para inhalar',
-    hintInhale: 'inhala…',
-    hintLetGo: 'suelta, y exhala despacio',
-    hintExhale: 'exhala…',
-    hintTooShort: 'un poco más, sin prisa',
-    skip: 'saltar',
-    outro: [
-      ['Esto es lo que quiero hacer la próxima vez,', 'antes de decir una sola palabra.'],
-      ['Me voy a ocupar de esto.', 'No por ti. Por mí.'],
+  /** The 6th, and the only thing that needs saying about yesterday. */
+  seis: [
+    ['Un 6 de febrero de 2024 empezó algo.'],
+    [
+      isSix ? `Hoy se cumplen ${sixes} meses de aquel día.` : `Han pasado ${sixes} meses de aquel día.`,
+      'Y entre medias pasó de todo: distancia, silencios, caminos distintos.',
     ],
-  },
+    ['Aun así, cada 6 me detengo.', 'Aunque no lo diga, llevo la cuenta.'],
+    // the shadow comes back for two short fragments: the panic is named and apologised for, nothing more
+    ['Ayer, en medio de un ataque de pánico, te pedí que te alejaras.', 'Fue el miedo hablando, no lo que siento.'],
+    ['Lo siento, Camila.', 'Sin peros.'],
+    ['Un eclipse no apaga el sol.', 'Solo se pone algo en medio, y por un rato no se ve.'],
+    ['Déjame enseñarte lo que hay detrás.'],
+  ],
 
   light: {
     dragHint: 'desliza para mover la luna',
@@ -52,8 +43,7 @@ export const CONTENT = {
       {
         p: 0.03,
         fragments: [
-          ['Cuando lo que se interpone se aparta,', 'vuelve lo que siempre estuvo ahí.'],
-          ['Y lo que yo veo cuando te miro a ti es esto.'],
+          ['Esto es lo que veo cuando miro hacia ti.'],
         ],
       },
       {
@@ -100,7 +90,11 @@ export const CONTENT = {
   },
 
   final: {
-    lines: [['La sombra ya pasó.', 'Lo que ves es lo que siempre estuvo.'], ['Lo que sigue es tuyo.']],
+    lines: [
+      ['La sombra ya pasó.', 'Lo que ves es lo que siempre estuvo.'],
+      ['Y el próximo 6, y el que venga,', 'ojalá nos encuentre más cerca de lo que estamos hoy.'],
+      ['Lo que sigue es tuyo.'],
+    ],
     kicker: 'sin presión · tú decides',
     choices: [
       {
@@ -125,13 +119,9 @@ export const CONTENT = {
     tell: 'decírselo a Branner',
     name: 'Camila.',
     sign: '— Branner',
-    footer: 'hecho con cariño por Branner',
-    credits: 'créditos',
-    again: 'volver a empezar',
   },
 
   hud: {
-    mark: 'eclipse',
     soundLabelOn: 'Silenciar la música',
     soundLabelOff: 'Activar la música',
   },

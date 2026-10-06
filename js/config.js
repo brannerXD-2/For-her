@@ -56,15 +56,10 @@ export const SCRUB = {
   keySpeed: 0.16,
 };
 
-/** Breathing: three slow cycles calm the sky. */
-export const BREATH = {
-  cycles: 3,
-  minHoldS: 2.2,
-  inhaleS: 4,
-  exhaleS: 5,
+/** The heartbeat that starts when yesterday is named and settles as the eclipse passes. */
+export const HEART = {
   bpmStart: 112,
   bpmEnd: 60,
-  skipAfterS: 26,
 };
 
 /** Frame-time driven quality steps. */

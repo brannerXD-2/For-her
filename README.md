@@ -6,10 +6,9 @@ El concepto es un eclipse total: algo se pone en medio y por unos minutos no se 
 
 | Momento | Qué pasa | Interacción |
 | --- | --- | --- |
-| **Entrada** | El cielo en totalidad, una frase y un anillo. | Tocar «entrar» (es el gesto que iPhone acepta para arrancar la música). Se puede elegir «en silencio». |
-| **Ayer** | Siete fragmentos, con el eclipse en pánico: la corona parpadea y el corazón late rápido. | Tocar para continuar. |
-| **Respirar** | Tres respiraciones: la corona se hincha al inhalar, el latido se aquieta con cada una. | Mantener presionado para inhalar, soltar para exhalar (o Espacio). Aparece «saltar» pasados 26 s. |
-| **La luz vuelve** | Seis paradas. La luna se aleja: primero el anillo de diamante, luego una media luna de sol, un atardecer dorado sobre las montañas. En la oscuridad total las luces del valle están encendidas; se apagan cuando vuelve el sol. | Deslizar (arrastrar, rueda o flechas). La luna no se deja apurar: se detiene en cada pensamiento. Si nadie toca, avanza sola despacio. |
+| **Entrada** | El cielo en totalidad y una frase sobre la fecha («Hoy es 6.»). | Tocar «entrar» (es el gesto que iPhone acepta para arrancar la música). Se puede elegir «en silencio». |
+| **El 6** | Empieza en la fecha: el 6 de febrero de 2024 y los meses que han pasado. Solo se oscurece para las dos frases sobre ayer; ahí el latido se acelera y luego se aquieta. | Tocar para continuar. |
+| **La luz vuelve** | Seis paradas. La luna se aleja: primero el anillo de diamante, luego un sol a medias, un atardecer dorado sobre las montañas. Arriba, la fecha avanza de 6 en 6 (`06 · feb · 2024` → hoy). En la oscuridad total las luces del valle están encendidas; se apagan cuando vuelve el sol. | Deslizar (arrastrar, rueda o flechas). La luna no se deja apurar: se detiene en cada pensamiento. Si nadie toca, avanza sola despacio. |
 | **Final** | Luz plena. Tres respuestas posibles, todas válidas. | Elegir una. Después, «Camila.» y la firma. |
 
 ## Estructura
@@ -28,9 +27,9 @@ js/
   engine/        shader del cielo (WebGL), renderizador, estado del eclipse
   input/         puntero unificado (ratón, dedo, teclado)
   audio/         música (dos piezas) y latido (Web Audio)
-  story/         entrada, ayer, respiración, luz, final
+  story/         entrada, el 6, luz, final
   ui/            fragmentos, HUD, créditos
-  util/
+  util/          fechas (el primer 6 y los que han pasado), animación, matemáticas
 assets/
   fonts/  audio/  images/
 ```

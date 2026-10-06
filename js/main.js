@@ -94,6 +94,7 @@ async function boot() {
     sky.par[0] = damp(sky.par[0], targetX, 2.2, dt);
     sky.par[1] = damp(sky.par[1], targetY, 2.2, dt);
 
+    hud.setTimeline(sky.p);
     heart.setLevel(app.heartOn ? app.heartGain * (1 - sky.calm * 0.45) : 0, sound.wanted);
     sky.pulse = heart.running && app.heartOn ? heart.pulseAt(now / 1000) * (reduced ? 0.35 : 1) * (1 - sky.calm * 0.5) : 0;
 

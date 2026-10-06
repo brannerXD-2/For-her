@@ -50,22 +50,10 @@
         <span class="fragment__next" id="fragment-next" aria-hidden="true"></span>
       </div>
 
-      <!-- Breathing -->
-      <div class="breath" id="breath" hidden aria-hidden="true">
-        <svg class="breath__svg" viewBox="0 0 80 80" width="72" height="72">
-          <circle class="breath__track" cx="40" cy="40" r="34" />
-          <circle class="breath__fill" id="breath-ring" cx="40" cy="40" r="34" transform="rotate(-90 40 40)" />
-        </svg>
-        <div class="breath__dots">
-          <i class="breath__dot"></i><i class="breath__dot"></i><i class="breath__dot"></i>
-        </div>
-      </div>
-
       <p class="hint mono" id="hint" aria-live="polite"></p>
-      <button class="skip mono" id="skip" type="button" hidden></button>
 
       <header class="hud" id="hud">
-        <span class="hud__mark mono" aria-hidden="true">eclipse</span>
+        <span class="hud__mark mono" id="hud-date" aria-hidden="true"></span>
         <button class="hud__btn" id="sound-btn" type="button" aria-pressed="true" aria-label="Sonido">
           <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
         </button>

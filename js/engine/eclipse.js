@@ -18,8 +18,7 @@ function overlapArea(d, r1, r2) {
 export class Sky {
   constructor() {
     this.p = 0; // moon progress: 0 = covering the sun, 1 = far away
-    this.calm = 0.55; // 0 = panic, 1 = calm
-    this.breath = 0; // 0..1, swells while someone breathes in
+    this.calm = 0.85; // 0 = panic, 1 = calm
     this.pulse = 0; // heartbeat flash
     this.glory = 0; // final warm lift
     this.reveal = 0; // fade in from black
@@ -71,7 +70,6 @@ export class Sky {
       moonDir: this.dir ?? SKY.moonDir,
       vis: this.vis,
       calm: this.calm,
-      breath: this.breath,
       pulse: this.pulse,
       // the light keeps warming as the moon goes, then the ending lifts it to full
       glory: Math.max(this.glory, 0.55 * smoothstep(0.4, 1, this.p)),

@@ -30,7 +30,7 @@ export async function runGate(app) {
   const soundBtn = document.getElementById('gate-sound');
   const note = document.getElementById('gate-note');
 
-  kicker.textContent = CONTENT.gate.kicker();
+  kicker.textContent = CONTENT.gate.kicker;
   const words = writeWords(title, CONTENT.gate.title);
   sub.textContent = CONTENT.gate.sub;
   note.textContent = CONTENT.gate.note;

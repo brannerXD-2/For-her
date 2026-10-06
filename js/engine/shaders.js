@@ -22,7 +22,6 @@ uniform vec3  uMoon;     // same for the moon
 uniform vec2  uMoonDir;  // unit vector from the sun towards the moon's path
 uniform float uVis;      // fraction of the sun's disc that is visible, 0..1
 uniform float uCalm;     // 0 = panic, 1 = calm
-uniform float uBreath;   // 0..1 while someone is breathing in
 uniform float uPulse;    // heartbeat envelope
 uniform float uGlory;    // final warm lift
 uniform float uReveal;   // fade in from black
@@ -128,7 +127,7 @@ void main() {
   // ---- corona --------------------------------------------------------------------------------
   float ang = atan(dv.y, dv.x);
   float stretch = 1.0 + 0.8 * pow(abs(cos(ang + 0.25)), 2.0);
-  float rr = r / stretch * mix(1.4, 1.0, uCalm) / (1.0 + uBreath * 0.38);
+  float rr = r / stretch * mix(1.4, 1.0, uCalm);
   vec3 corona = vec3(0.0);
   if (rr < 14.0) {
     float t = uTime * mix(0.06, 0.012, uCalm) * uMotion;
@@ -139,7 +138,7 @@ void main() {
     float shape = mix(0.35, 1.55, streamers) * (0.8 + 0.4 * fine);
     shape *= 1.0 + (1.0 - uCalm) * 0.7 * flick;
     float amt = body * shape * smoothstep(R - aa, R + aa, dS);
-    amt *= 1.0 + uPulse * 0.55 + uBreath * 0.35;
+    amt *= 1.0 + uPulse * 0.55;
 
     vec3 cc = mix(vec3(1.0, 0.90, 0.66), vec3(1.0, 0.60, 0.22), smoothstep(1.0, 2.6, rr));
     cc = mix(cc, vec3(0.62, 0.22, 0.30), smoothstep(2.4, 7.0, rr));

@@ -2,7 +2,7 @@ import { QUALITY } from '../config.js';
 import { FRAGMENT, VERTEX } from './shaders.js';
 
 const UNIFORMS = [
-  'uRes', 'uDpr', 'uTime', 'uSun', 'uMoon', 'uMoonDir', 'uVis', 'uCalm', 'uBreath',
+  'uRes', 'uDpr', 'uTime', 'uSun', 'uMoon', 'uMoonDir', 'uVis', 'uCalm',
   'uPulse', 'uGlory', 'uReveal', 'uMotion', 'uPar',
 ];
 
@@ -107,7 +107,6 @@ export class SkyRenderer {
     gl.uniform2f(L.uMoonDir, u.moonDir[0], u.moonDir[1]);
     gl.uniform1f(L.uVis, u.vis);
     gl.uniform1f(L.uCalm, u.calm);
-    gl.uniform1f(L.uBreath, u.breath);
     gl.uniform1f(L.uPulse, u.pulse);
     gl.uniform1f(L.uGlory, u.glory);
     gl.uniform1f(L.uReveal, u.reveal);
