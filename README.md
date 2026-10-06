@@ -18,7 +18,7 @@ index.html
 css/
   tokens.css     variables de diseño y tipografías
   base.css       reset, lienzo, velo
-  story.css      fragmentos, respiración, instrucciones
+  story.css      fragmentos e instrucciones
   ui.css         entrada, botones, respuestas, despedida, pie, créditos
 js/
   main.js        arranque, bucle, calidad adaptativa
@@ -42,7 +42,7 @@ Los módulos ES necesitan un servidor:
 python -m http.server 5510
 ```
 
-Con `?debug` en la URL se expone `window.app` y se puede saltar de capítulo: `?debug&from=breath`, `?debug&from=light&s=3`, `?debug&from=final`. `?motion=reduce` fuerza movimiento reducido.
+Con `?debug` en la URL se expone `window.app` y se puede saltar de capítulo: `?debug&from=seis`, `?debug&from=light&s=3`, `?debug&from=final`. `?motion=reduce` fuerza movimiento reducido.
 
 ## Publicar
 
@@ -52,7 +52,7 @@ Es un sitio estático: sirve en Vercel, GitHub Pages o cualquier hosting. Todas 
 
 - **Textos**: `js/content.js`. Cada fragmento es una lista de líneas; el siguiente espera un toque.
 - **WhatsApp opcional**: en `js/config.js`, `CONTACT.whatsapp` (solo dígitos con prefijo, p. ej. `573001234567`). Si queda vacío, el botón «decírselo a Branner» no aparece.
-- **Ritmo y aspecto**: `js/config.js` (tamaño del sol, sensibilidad del arrastre, respiraciones, calidad).
+- **Ritmo y aspecto**: `js/config.js` (tamaño del sol, sensibilidad del arrastre, latido, calidad).
 
 ## Detalles técnicos
 
